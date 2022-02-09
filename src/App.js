@@ -64,7 +64,7 @@ function App() {
                 <input type="number" />
               </div>
               <div className='mx-1 my-4'>
-                <label>Select Team</label>
+                <label>Team</label>
                 <select>
                   <option>Team A</option>
                   <option>Team B</option>
@@ -84,7 +84,7 @@ function App() {
                 <input type="number" />
               </div>
               <div className='mx-1 my-4'>
-                <label>Select Team</label>
+                <label>Team</label>
                 <select>
                   <option>Team A</option>
                   <option>Team B</option>
