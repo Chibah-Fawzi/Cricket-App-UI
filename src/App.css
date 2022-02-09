@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
+body {
+  font-family: "Montserrat", sans-serif !important;
+  width: 100vw !important;
+  overflow-x: hidden;
+}
+.team {
+  /* width: 350px !important; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  border-radius: 20px !important;
+  outline: none;
+  border: none;
+  padding: 0 5px;
+  color: #fff;
+  box-shadow: 0px 0px 7px rgba(70, 69, 69, 0.404);
+}
+input,
+select {
+  box-shadow: 0px 0px 7px rgba(70, 69, 69, 0.404);
+  font-size: 12px !important;
+}
+h2 {
+  font-size: 20px !important;
+  text-transform: uppercase !important;
+  font-weight: 900 !important;
+}
+button.small-btn {
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.settings {
+  /* height: 80vh !important; */
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.settings label {
+  font-size: 10px;
+}
+.settings .btn {
+  border: 1px solid #0d6efd;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.settings-btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  width: 100%;
+}
+.team input[type="text"] {
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #0d6efd;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.settings input[type="text"],
+input[type="number"],
+select {
+  padding: 5px;
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid #0d6efd;
+  font-size: 12px;
+}
+.scoreboard-toggle:hover {
+  background-color: #0d6efd;
+  color: #fff !important;
+}
+.settings-btn:hover {
+  background-color: #137b8b !important;
+}
+.scoreboard-toggle:active,
+.scoreboard-toggle:focus {
+  background-color: #1756b4;
+  color: #fff !important;
+}
+
+@media screen and (max-width: 991px) {
+  .settings {
+    padding: 5vh 0 !important;
+    margin: 10vh 0 !important;
+    border-bottom: 2px solid #1756b4;
+    border-top: 2px solid #1756b4;
   }
 }
