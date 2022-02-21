@@ -1,84 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+/* BOOTSTRAP OVERRIDES  */
+button.bg-success {
+  background-color: #00a748 !important;
+}
+button.bg-warning {
+  background-color: #ffbe2a !important;
+}
+button.bg-primary {
+  background-color: #00a4b7 !important;
+}
+button.bg-danger {
+  background-color: #e42b49 !important;
+}
+
 body {
-  font-family: "Montserrat", sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
   width: 100vw !important;
   overflow-x: hidden;
 }
-.team {
-  /* width: 350px !important; */
+
+.team-wrap {
+  max-width: 240px !important;
 }
 
 button {
-  border-radius: 20px !important;
+  border-radius: 5px !important;
   outline: none;
   border: none;
   padding: 0 5px;
   color: #fff;
-  box-shadow: 0px 0px 7px rgba(70, 69, 69, 0.404);
 }
 input,
 select {
-  box-shadow: 0px 0px 7px rgba(70, 69, 69, 0.404);
   font-size: 12px !important;
 }
 h2 {
   font-size: 20px !important;
-  text-transform: uppercase !important;
-  font-weight: 900 !important;
 }
 button.small-btn {
   width: 100%;
 }
 
 .settings {
-  /* height: 80vh !important; */
+  max-width: 320px !important;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .settings label {
   font-size: 10px;
 }
 .settings .btn {
-  border: 1px solid #0d6efd;
+  border: 1px solid #00a4b7;
   padding: 20px;
 }
 
 .settings-btn {
   padding: 5px 10px;
   font-size: 12px;
-  width: 100%;
+  width: 80px;
 }
-.team input[type="text"] {
+.team-wrap input[type="text"] {
   padding: 20px;
-  border-radius: 20px;
-  border: 1px solid #0d6efd;
+  border-radius: 5px;
+  border: 1px solid #00a4b7;
+  width: 150px !important;
 }
 
+.settings select {
+  width: 80px;
+}
 .settings input[type="text"],
 input[type="number"],
 select {
   padding: 5px;
   width: 100%;
-  border-radius: 20px;
-  border: 1px solid #0d6efd;
+  border-radius: 5px;
+  border: 1px solid #00a4b7;
   font-size: 12px;
 }
 .scoreboard-toggle:hover {
-  background-color: #0d6efd;
+  background-color: #00a4b7;
   color: #fff !important;
 }
 .settings-btn:hover {
-  background-color: #137b8b !important;
+  background-color: #0e7a86 !important;
 }
-.scoreboard-toggle:active,
-.scoreboard-toggle:focus {
-  background-color: #1756b4;
+.scoreboard-toggle:active {
+  background-color: #207f8a;
   color: #fff !important;
 }
 
-@media screen and (max-width: 991px) {
-  .settings {
-    padding: 5vh 0 !important;
-    margin: 10vh 0 !important;
-    border-bottom: 2px solid #1756b4;
-    border-top: 2px solid #1756b4;
+@media screen and (max-width: 476px) {
+  .team-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10vh;
+  }
+}
+@media screen and (max-width: 456px) {
+  .settings form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #00a4b7;
+    padding: 10px;
+  }
+  .settings input,
+  .settings select {
+    min-width: 180px;
   }
 }
