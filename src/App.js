@@ -111,42 +111,46 @@ function App() {
         name: value
       })
   }
+  const handleBatter = (e) => {
+    e.preventDefault();
 
-  const handlePlayer = (e, inputType, value, playerType) => {
+    const name = e.target.playerName.value
+    const number = e.target.playerNumber.value
+    const team = e.target.team.value
+    console.log(name, number, team)
 
-    console.log(inputType)
-    if (inputType === "team" && value === homeTeam.name) {
-      switch (inputType) {
-        case "name":
-          if (playerType === "batter") setHomeTeam({ ...homeTeam, batter: { ...homeTeam.batter, name: value } })
-          else if (playerType === "bowler") setHomeTeam({ ...homeTeam, bowler: { ...homeTeam.bowler, name: value } })
-          break;
-        case "number":
-          if (playerType === "batter") setHomeTeam({ ...homeTeam, batter: { ...homeTeam.batter, number: Number(value) } })
-          else if (playerType === "bowler") setHomeTeam({ ...homeTeam, bowler: { ...homeTeam.bowler, number: Number(value) } })
-          break;
-        default:
-          return;
-      }
-    } else if (inputType === "team" && value === awayTeam.name) {
-      switch (inputType) {
-        case "name":
-          if (playerType === "batter") setAwayTeam({ ...awayTeam, batter: { ...awayTeam.batter, name: value } })
-          else if (playerType === "bowler") setAwayTeam({ ...awayTeam, bowler: { ...awayTeam.bowler, name: value } })
-          break;
-        case "number":
-          if (playerType === "batter") setAwayTeam({ ...awayTeam, batter: { ...awayTeam.batter, number: Number(value) } })
-          else if (playerType === "bowler") setAwayTeam({ ...awayTeam, bowler: { ...awayTeam.bowler, number: Number(value) } })
-          break;
-        default:
-          return;
-      }
+    if (team === homeTeam.name && team !== "") {
+      setHomeTeam({ ...homeTeam, batter: { ...homeTeam.batter, name, number } })
+      console.log("home")
+    }
+    else if (team === awayTeam.name && team !== "") {
+      setAwayTeam({ ...awayTeam, batter: { ...awayTeam.batter, name, number } })
+      console.log("away");
+    } else if (team === "") {
+      console.log('insert team name!')
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleBowler = (e) => {
     e.preventDefault();
+    const name = e.target.playerName.value
+    const number = e.target.playerNumber.value
+    const team = e.target.team.value
 
+    if (team === homeTeam.name && team !== "") {
+      setHomeTeam({ ...homeTeam, bowler: { ...homeTeam.bowler, name, number } })
+    }
+    else if (team === awayTeam.name && team !== "") {
+      setAwayTeam({ ...awayTeam, bowler: { ...awayTeam.bowler, name, number } })
+    } else if (team === "") {
+      console.log('insert team name!')
+    }
+  }
+
+  const onNumberChange = (e) => {
+    return e.target.value <= 0
+      ? (e.target.value = 1)
+      : e.target.value
   }
 
   const showScoreboard = (e) => {
@@ -296,13 +300,13 @@ function App() {
         <div className='col-lg col-sm-6 mx-4 my-4 settings'>
           <div className='col d-flex flex-column align-items-center'>
             <button onClick={(e) => showScoreboard(e)} className='btn scoreboard-toggle'>SHOW/HIDE SCOREBOARD</button>
-            <form onSubmit={handleSubmit} className='d-flex mt-5 align-items-center'>
+            <form onSubmit={handleBatter} className='d-flex mt-5 align-items-center'>
               <div className='d-flex flex-column mx-1 my-4'>
                 <label className='mb-2'>Player Name</label>
                 <input
                   name="playerName"
                   id="playerName"
-                  onChange={(e) => handlePlayer(e, "name", e.target.value, "batter")}
+
                   style={{
                     width: '150px'
                   }}
@@ -310,11 +314,11 @@ function App() {
               </div>
               <div className='d-flex flex-column mx-1 my-4'>
                 <label className='mb-2'>Number</label>
-                <input name="playerNumber" id="playerNumber" onChange={(e) => handlePlayer(e, "number", e.target.value, "batter")} type="number" />
+                <input name="playerNumber" id="playerNumber" onChange={(e) => onNumberChange(e)} type="number" />
               </div>
               <div className='d-flex flex-column mx-1 my-4'>
                 <label className='mb-2'>Team</label>
-                <select onChange={(e) => handlePlayer(e, "team", e.target.value, "batter")}>
+                <select name='team' id='team' defaultValue={homeTeam.name}>
                   {homeTeam.name && awayTeam.name ?
                     <>
                       <option>{homeTeam.name}</option>
@@ -327,11 +331,12 @@ function App() {
                 <button type='submit' className='bg-primary settings-btn mb-2'>Add Batter</button>
               </div>
             </form>
-            <form className='d-flex mt-3 align-items-center'>
+            <form onSubmit={handleBowler} className='d-flex mt-3 align-items-center'>
               <div className='d-flex flex-column mx-1 my-4'>
                 <label className='mb-2'>Player Name</label>
                 <input
-                  onChange={(e) => handlePlayer(e, "team", e.target.value, "bowler")}
+                  name="playerName"
+                  id="playerName"
                   style={{
                     width: '150px'
                   }}
@@ -339,11 +344,11 @@ function App() {
               </div>
               <div className='d-flex flex-column mx-1 my-4'>
                 <label className='mb-2'>Number</label>
-                <input onChange={(e) => handlePlayer(e, "team", e.target.value, "bowler")} type="number" />
+                <input onChange={(e) => onNumberChange(e)} name="playerNumber" id="playerNumber" type="number" />
               </div>
               <div className='d-flex flex-column mx-1 my-4'>
                 <label className='mb-2'>Team</label>
-                <select onChange={(e) => handlePlayer(e, "team", e.target.value, "bowler")}>
+                <select name='team' id='team' defaultValue={homeTeam.name}>
                   {homeTeam.name && awayTeam.name ?
                     <>
                       <option>{homeTeam.name}</option>
