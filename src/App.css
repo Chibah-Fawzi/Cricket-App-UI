@@ -20,6 +20,11 @@ body {
   overflow-x: hidden;
 }
 
+.input-wrapper input[type="text"] {
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
 .team-wrap {
   max-width: 240px !important;
 }

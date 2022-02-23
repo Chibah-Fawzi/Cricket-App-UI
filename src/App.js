@@ -100,17 +100,6 @@ function App() {
     }
   }
 
-  const handleTeamName = (e, home, value) => {
-    home
-      ? setHomeTeam({
-        ...homeTeam,
-        name: value
-      })
-      : setAwayTeam({
-        ...awayTeam,
-        name: value
-      })
-  }
   const handleBatter = (e) => {
     e.preventDefault();
 
@@ -130,7 +119,6 @@ function App() {
       console.log('insert team name!')
     }
   }
-
   const handleBowler = (e) => {
     e.preventDefault();
     const name = e.target.playerName.value
@@ -147,7 +135,19 @@ function App() {
     }
   }
 
-  const onNumberChange = (e) => {
+  const handleTeamName = (e, home, value) => {
+    home
+      ? setHomeTeam({
+        ...homeTeam,
+        name: value
+      })
+      : setAwayTeam({
+        ...awayTeam,
+        name: value
+      })
+  }
+
+  const handleNumberChange = (e) => {
     return e.target.value <= 0
       ? (e.target.value = 1)
       : e.target.value
@@ -173,6 +173,7 @@ function App() {
               onChange={(e) => handleTeamName(e, true, e.currentTarget.value)}
               type='text'
               className='w-100 mt-2'
+              maxLength={3}
               placeholder='TEAM NAME' />
             <label htmlFor='files'>
               <i
@@ -239,6 +240,7 @@ function App() {
           <div className="input-wrapper d-md-flex align-items-center justify-content-start">
             <input
               onChange={(e) => handleTeamName(e, false, e.currentTarget.value)}
+              maxLength={3}
               type='text'
               className='w-100 mt-2'
               placeholder='TEAM NAME' />
@@ -314,7 +316,7 @@ function App() {
               </div>
               <div className='d-flex flex-column mx-1 my-4'>
                 <label className='mb-2'>Number</label>
-                <input name="playerNumber" id="playerNumber" onChange={(e) => onNumberChange(e)} type="number" />
+                <input name="playerNumber" id="playerNumber" onChange={(e) => handleNumberChange(e)} type="number" />
               </div>
               <div className='d-flex flex-column mx-1 my-4'>
                 <label className='mb-2'>Team</label>
@@ -344,7 +346,7 @@ function App() {
               </div>
               <div className='d-flex flex-column mx-1 my-4'>
                 <label className='mb-2'>Number</label>
-                <input onChange={(e) => onNumberChange(e)} name="playerNumber" id="playerNumber" type="number" />
+                <input onChange={(e) => handleNumberChange(e)} name="playerNumber" id="playerNumber" type="number" />
               </div>
               <div className='d-flex flex-column mx-1 my-4'>
                 <label className='mb-2'>Team</label>
