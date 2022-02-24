@@ -2,14 +2,26 @@ import React from 'react'
 import Scoreboard3 from './svgs/Scoreboard3'
 
 export default function ScoreBoard(props) {
-    const { homeTeam, awayTeam } = props
+    const { homeTeam, awayTeam, overs } = props
     const lastRunsHome = homeTeam.previousRuns.slice(1).slice(-5)
     const lastRunsAway = awayTeam.previousRuns.slice(1).slice(-5)
 
-    console.log("home: ", homeTeam.batter)
-    console.log("away: ", awayTeam.batter)
+
+    // var convertedLastRunsHome;
+    // for (let i = 0; i < lastRunsHome.length; i++) {
+    //     convertedLastRunsHome = {
+    //         run: lastRunsHome[i].toLowerCase() === "run" ? "1" : "",
+    //         extra: lastRunsHome[i].toLowerCase() === "extra run" ? "1" : "",
+    //         hit_boundary: lastRunsHome[i].toLowerCase() === "hit boundary" ? "4" : "",
+    //         over_boundary: lastRunsHome[i].toLowerCase() === "over boundary" ? "6" : "",
+    //     }
+    // }
+    // console.log(convertedLastRunsHome)
+
+
     return (
         <div className='container'>
+            <Scoreboard3 homeTeam={homeTeam} awayTeam={awayTeam} overs={overs} lastRunsHome={lastRunsHome} />
             <div className='row'>
                 <div className='col'>
                     <h2>Home Batter :{homeTeam.batter.name}</h2>
@@ -29,13 +41,12 @@ export default function ScoreBoard(props) {
                 </div>
 
             </div>
-            <Scoreboard3 />
 
             <div className='row text-center justify-content-center'>
                 <div className='col team-stats'>
                     <h2>HOME: {homeTeam.name}</h2>
                     <div>RUNS : {homeTeam.runs}</div>
-                    <div>Overs : {homeTeam.overs} </div>
+                    <div>Overs : {overs} </div>
                     <div>Previous Runs : {lastRunsHome.map(e => e)} </div>
                     <div>Flag path : {homeTeam.path} </div>
                     <div>Runs To Win : {homeTeam.runsToWin} </div>
@@ -43,7 +54,7 @@ export default function ScoreBoard(props) {
                 <div className='col team-stats'>
                     <h2>AWAY : {awayTeam.name} </h2>
                     <div>RUNS : {awayTeam.runs}</div>
-                    <div>Overs : {awayTeam.overs} </div>
+                    <div>Overs : {overs} </div>
                     <div>Previous Runs : {lastRunsAway.map(e => e)} </div>
                     <div>Flag path : {awayTeam.path} </div>
                     <div>Runs To Win : {awayTeam.runsToWin} </div>

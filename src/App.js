@@ -12,6 +12,7 @@ function App() {
       flag: "",
       runs: 0,
       overs: 0,
+      penalties: 0,
       previousRuns: [],
       runsToWin: 120,
       batter: {
@@ -29,6 +30,7 @@ function App() {
       flag: "",
       runs: 0,
       overs: 0,
+      penalties: 0,
       previousRuns: [],
       runsToWin: 120,
       batter: {
@@ -40,6 +42,8 @@ function App() {
         number: ""
       }
     });
+
+  const [overs, setOvers] = useState(0);
 
   const [displayScoreboard,
     setDisplayScoreboard] = useState(false);
@@ -57,46 +61,53 @@ function App() {
             ...homeTeam.previousRuns,
             runType
           ],
-          runsToWin: homeTeam.runsToWin - Number(run),
+          runsToWin: homeTeam.runsToWin <= 0
+            ? 0
+            : homeTeam.runsToWin - Number(run)
           // Add an over for every 6 runs
-          overs: homeTeam.runs % 6 === 0 && homeTeam.runs > 0
-            ? homeTeam.overs + 1
-            : homeTeam.overs
         })
+        setOvers(homeTeam.runs % 6 === 0 && homeTeam.runs > 0
+          ? overs + 1
+          : overs)
         // Deduces penalty points and prevent the runs to go negative
       } else if (homeTeam.runs > 0) {
         console.log("PENALTY!")
         setHomeTeam({
           ...homeTeam,
           runs: homeTeam.runs - Number(run),
-          runsToWin: homeTeam.runsToWin + Number(run)
+          runsToWin: homeTeam.runsToWin + Number(run),
+          penalties: homeTeam.penalties + 1
         })
       }
     } else {
       // Checks if we increment the runs
-      return incr
-        ? setAwayTeam({
+      if (incr) {
+        setOvers(awayTeam.runs % 6 === 0 && awayTeam.runs > 0
+          ? overs + 1
+          : overs)
+
+        setAwayTeam({
           ...awayTeam,
           runs: awayTeam.runs + Number(run),
           previousRuns: [
             ...awayTeam.previousRuns,
             runType
           ],
-          runsToWin: awayTeam.runsToWin - Number(run),
+          runsToWin: awayTeam.runsToWin <= 0
+            ? 0
+            : awayTeam.runsToWin - Number(run),
           // Add an over for every 6 runs
-          overs: awayTeam.runs % 6 === 0 && awayTeam.runs > 0
-            ? awayTeam.overs + 1
-            : awayTeam.overs
         })
+      } else if (awayTeam.runs > 0) {
         // Deduces penalty points and prevent the runs to go negative
-        : awayTeam.runs > 0
-          ? setAwayTeam({
-            ...awayTeam,
-            runs: awayTeam.runs - Number(run),
-            runsToWin: awayTeam.runsToWin + Number(run)
-          })
-          : ''
+        setAwayTeam({
+          ...awayTeam,
+          runs: awayTeam.runs - Number(run),
+          runsToWin: awayTeam.runsToWin + Number(run),
+          penalties: awayTeam.penalties + 1
 
+        })
+      }
     }
   }
 
@@ -369,7 +380,7 @@ function App() {
       </div>
 
       {displayScoreboard
-        ? <ScoreBoard homeTeam={homeTeam} awayTeam={awayTeam} />
+        ? <ScoreBoard homeTeam={homeTeam} awayTeam={awayTeam} overs={overs} />
         : ''}
     </div>
   );
