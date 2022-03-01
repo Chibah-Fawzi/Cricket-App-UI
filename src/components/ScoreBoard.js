@@ -18,11 +18,10 @@ export default function ScoreBoard(props) {
     // }
     // console.log(convertedLastRunsHome)
 
-
     return (
-        <div className='container'>
+        <div className='container mt-0 p-0 d-flex align-items-center justify-content-center'>
             <Scoreboard3 homeTeam={homeTeam} awayTeam={awayTeam} overs={overs} lastRunsHome={lastRunsHome} />
-            <div className='row'>
+            {/* <div className='row'>
                 <div className='col'>
                     <h2>Home Batter :{homeTeam.batter.name}</h2>
                     <h6>{homeTeam.batter.number}</h6>
@@ -59,7 +58,7 @@ export default function ScoreBoard(props) {
                     <div>Flag path : {awayTeam.path} </div>
                     <div>Runs To Win : {awayTeam.runsToWin} </div>
                 </div>
-            </div>
+            </div> */}
         </div>
 
     )

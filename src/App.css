@@ -20,11 +20,6 @@ body {
   overflow-x: hidden;
 }
 
-.input-wrapper input[type="text"] {
-  text-transform: uppercase;
-  font-weight: bolder;
-}
-
 .team-wrap {
   max-width: 240px !important;
 }
@@ -41,24 +36,24 @@ select {
   font-size: 12px !important;
 }
 h2 {
-  font-size: 20px !important;
+  font-size: 14px !important;
 }
 button.small-btn {
   width: 100%;
 }
 
 .settings {
-  max-width: 320px !important;
+  max-width: fit-content !important;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 .settings label {
   font-size: 10px;
 }
 .settings .btn {
+  padding: 10px;
   border: 1px solid #00a4b7;
-  padding: 20px;
+  font-size: 15px;
 }
 
 .settings-btn {
@@ -67,20 +62,25 @@ button.small-btn {
   width: 80px;
 }
 .team-wrap input[type="text"] {
-  padding: 20px;
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid #00a4b7;
-  width: 150px !important;
+  width: 100% !important;
+  font-weight: bolder;
+  font-size: 15px !important;
+  text-transform: uppercase;
 }
 
 .settings select {
-  width: 80px;
+  width: 50px !important;
+  font-size: 10px !important;
+  text-transform: uppercase;
 }
 .settings input[type="text"],
 input[type="number"],
 select {
   padding: 5px;
-  width: 100%;
+  width: 100px !important;
   border-radius: 5px;
   border: 1px solid #00a4b7;
   font-size: 12px;
@@ -95,6 +95,21 @@ select {
 .scoreboard-toggle:active {
   background-color: #207f8a;
   color: #fff !important;
+}
+.svg {
+  z-index: -999;
+}
+.svg svg {
+  width: 800px;
+  margin-top: -10vh;
+}
+
+@media screen and (max-width: 849px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media screen and (max-width: 476px) {

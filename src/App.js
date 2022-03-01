@@ -170,7 +170,7 @@ function App() {
   }
 
   return (
-    <div className='mt-5 px-0 mx-0'>
+    <div className='mt-5 px-0 mx-0 mb-0'>
       <div className='layout row justify-content-center'>
         <div className='col-lg col-sm-6 team-wrap pe-1'>
           <div className='d-flex align-items-start'>
@@ -179,13 +179,13 @@ function App() {
             </span>
           </div>
 
-          <div className="input-wrapper d-md-flex align-items-center justify-content-start">
+          <div className="input-wrapper d-md-flex align-items-center justify-content-start w-100">
             <input
               onChange={(e) => handleTeamName(e, true, e.currentTarget.value)}
               type='text'
               className='w-100 mt-2'
               maxLength={3}
-              placeholder='TEAM NAME' />
+              placeholder='Team A' />
             <label htmlFor='files'>
               <i
                 className='p-1 '
@@ -202,43 +202,109 @@ function App() {
               }} />
           </div>
 
-          <div className='btn-wrapper col mt-5'>
+          <div className='btn-wrapper col mt-1'>
             <div className='team'>
               <button
                 onClick={(e) => handleRuns(e, 1, true, "Run", true, true)}
-                className='bg-primary p-2 w-100'>
+                className='bg-primary p-1 w-100'>
                 <h2>Run</h2>
                 <span>+1</span>
               </button>
             </div>
-            <div className='mt-5 team d-flex justify-content-between'>
+            <div className='mt-1 team d-flex justify-content-between'>
               <button
                 onClick={(e) => handleRuns(e, 1, false, "Penalty", true, true)}
-                className='bg-danger small-btn p-2 me-1 w-50'>
+                className='bg-danger small-btn p-1 me-1 w-50'>
                 <h2>Penalty</h2>
                 <span>-1</span>
               </button>
               <button
                 onClick={(e) => handleRuns(e, 1, true, "Extra Run", true, true)}
-                className='bg-warning small-btn p-2 w-50'>
+                className='bg-warning small-btn p-1 w-50'>
                 <h2>Extra run</h2>
                 <span>+1</span>
               </button>
             </div>
-            <div className='mt-5 team d-flex justify-content-between'>
+            <div className='mt-1 team d-flex justify-content-between'>
               <button
                 onClick={(e) => handleRuns(e, 4, true, "Hit Boundary", true, true)}
-                className='me-1 bg-success small-btn p-2 w-50'>
+                className='me-1 bg-success small-btn p-1 w-50'>
                 <h2>Hit Boundary</h2>
                 <span>+4</span>
               </button>
               <button
                 onClick={(e) => handleRuns(e, 6, true, "Over Boundary", true, true)}
-                className='bg-success small-btn p-2 w-50'>
+                className='bg-success small-btn p-1 w-50'>
                 <h2>Over Boundary</h2>
                 <span>+6</span>
               </button>
             </div>
+          </div>
+        </div>
+        <div className='col-lg col-sm-6 my-4 pt-2 settings'>
+          <div className='col d-flex flex-column align-items-center'>
+            <button onClick={(e) => showScoreboard(e)} className='btn scoreboard-toggle'>Show/Hide Scoreboard</button>
+            <form onSubmit={handleBatter} className='d-flex align-items-center mt-4'>
+              <div className='d-flex flex-column mx-1 '>
+                <label className='mb-2'>Player Name</label>
+                <input
+                  name="playerName"
+                  id="playerName"
+
+                  style={{
+                    width: '150px'
+                  }}
+                  type="text" />
+              </div>
+              <div className='d-flex flex-column mx-1 '>
+                <label className='mb-2'>Number</label>
+                <input name="playerNumber" id="playerNumber" onChange={(e) => handleNumberChange(e)} type="number" />
+              </div>
+              <div className='d-flex flex-column mx-1 '>
+                <label className='mb-2'>Team</label>
+                <select name='team' id='team' defaultValue={homeTeam.name}>
+                  {homeTeam.name && awayTeam.name ?
+                    <>
+                      <option>{homeTeam.name}</option>
+                      <option>{awayTeam.name}</option>
+                    </>
+                    : <option disabled>No team names</option>}
+                </select>
+              </div>
+              <div className='d-flex flex-column mx-1 mt-3'>
+                <button type='submit' className='bg-primary settings-btn mb-2'>Add Batter</button>
+              </div>
+            </form>
+            <form onSubmit={handleBowler} className='d-flex mt-3 align-items-center'>
+              <div className='d-flex flex-column mx-1 '>
+                <label className='mb-2'>Player Name</label>
+                <input
+                  name="playerName"
+                  id="playerName"
+                  style={{
+                    width: '150px'
+                  }}
+                  type="text" />
+              </div>
+              <div className='d-flex flex-column mx-1 '>
+                <label className='mb-2'>Number</label>
+                <input onChange={(e) => handleNumberChange(e)} name="playerNumber" id="playerNumber" type="number" />
+              </div>
+              <div className='d-flex flex-column mx-1 '>
+                <label className='mb-2'>Team</label>
+                <select name='team' id='team' defaultValue={homeTeam.name}>
+                  {homeTeam.name && awayTeam.name ?
+                    <>
+                      <option>{homeTeam.name}</option>
+                      <option>{awayTeam.name}</option>
+                    </>
+                    : <option disabled>No team names</option>}
+                </select>
+              </div>
+              <div className='d-flex flex-column mx-1 mt-3'>
+                <button type='submit' className='bg-primary settings-btn mb-2'>Add Bowler</button>
+              </div>
+            </form>
           </div>
         </div>
         <div className='col-lg col-sm-6 team-wrap ps-1'>
@@ -254,7 +320,7 @@ function App() {
               maxLength={3}
               type='text'
               className='w-100 mt-2'
-              placeholder='TEAM NAME' />
+              placeholder='Team B' />
             <label htmlFor='files'>
               <i
                 className='p-1 '
@@ -271,111 +337,46 @@ function App() {
               }} />
           </div>
 
-          <div className='btn-wrapper col mt-5'>
+          <div className='btn-wrapper col mt-1'>
             <div className='team'>
               <button
                 onClick={(e) => handleRuns(e, 1, true, "Run", false)}
-                className='bg-primary p-2 w-100'>
+                className='bg-primary p-1 w-100'>
                 <h2>Run</h2>
                 <span>+1</span>
               </button>
             </div>
-            <div className='mt-5 team d-flex justify-content-between'>
+            <div className='mt-1 team d-flex justify-content-between'>
               <button
                 onClick={(e) => handleRuns(e, 1, false, "Penalty", false)}
-                className='bg-danger small-btn p-2 me-1 w-50'>
+                className='bg-danger small-btn p-1 me-1 w-50'>
                 <h2>Penalty</h2>
                 <span>-1</span>
               </button>
               <button
                 onClick={(e) => handleRuns(e, 1, true, "Extra Run", false)}
-                className='bg-warning small-btn p-2 w-50'>
+                className='bg-warning small-btn p-1 w-50'>
                 <h2>Extra run</h2>
                 <span>+1</span>
               </button>
             </div>
-            <div className='mt-5 team d-flex justify-content-between'>
+            <div className='mt-1 team d-flex justify-content-between'>
               <button
                 onClick={(e) => handleRuns(e, 4, true, "Hit Boundary", false)}
-                className='bg-success me-1 small-btn p-2 w-50'>
+                className='me-1 bg-success small-btn p-1 w-50'>
                 <h2>Hit Boundary</h2>
                 <span>+4</span>
               </button>
               <button
                 onClick={(e) => handleRuns(e, 6, true, "Over Boundary", false)}
-                className='bg-success small-btn p-2 w-50'>
+                className='bg-success small-btn p-1 w-50'>
                 <h2>Over Boundary</h2>
                 <span>+6</span>
               </button>
             </div>
           </div>
         </div>
-        <div className='col-lg col-sm-6 mx-4 my-4 settings'>
-          <div className='col d-flex flex-column align-items-center'>
-            <button onClick={(e) => showScoreboard(e)} className='btn scoreboard-toggle'>SHOW/HIDE SCOREBOARD</button>
-            <form onSubmit={handleBatter} className='d-flex mt-5 align-items-center'>
-              <div className='d-flex flex-column mx-1 my-4'>
-                <label className='mb-2'>Player Name</label>
-                <input
-                  name="playerName"
-                  id="playerName"
 
-                  style={{
-                    width: '150px'
-                  }}
-                  type="text" />
-              </div>
-              <div className='d-flex flex-column mx-1 my-4'>
-                <label className='mb-2'>Number</label>
-                <input name="playerNumber" id="playerNumber" onChange={(e) => handleNumberChange(e)} type="number" />
-              </div>
-              <div className='d-flex flex-column mx-1 my-4'>
-                <label className='mb-2'>Team</label>
-                <select name='team' id='team' defaultValue={homeTeam.name}>
-                  {homeTeam.name && awayTeam.name ?
-                    <>
-                      <option>{homeTeam.name}</option>
-                      <option>{awayTeam.name}</option>
-                    </>
-                    : <option disabled>No team names</option>}
-                </select>
-              </div>
-              <div className='d-flex flex-column mx-1 my-4'>
-                <button type='submit' className='bg-primary settings-btn mb-2'>Add Batter</button>
-              </div>
-            </form>
-            <form onSubmit={handleBowler} className='d-flex mt-3 align-items-center'>
-              <div className='d-flex flex-column mx-1 my-4'>
-                <label className='mb-2'>Player Name</label>
-                <input
-                  name="playerName"
-                  id="playerName"
-                  style={{
-                    width: '150px'
-                  }}
-                  type="text" />
-              </div>
-              <div className='d-flex flex-column mx-1 my-4'>
-                <label className='mb-2'>Number</label>
-                <input onChange={(e) => handleNumberChange(e)} name="playerNumber" id="playerNumber" type="number" />
-              </div>
-              <div className='d-flex flex-column mx-1 my-4'>
-                <label className='mb-2'>Team</label>
-                <select name='team' id='team' defaultValue={homeTeam.name}>
-                  {homeTeam.name && awayTeam.name ?
-                    <>
-                      <option>{homeTeam.name}</option>
-                      <option>{awayTeam.name}</option>
-                    </>
-                    : <option disabled>No team names</option>}
-                </select>
-              </div>
-              <div className='d-flex flex-column mx-1 my-4'>
-                <button className='bg-primary settings-btn mb-2'>Add Bowler</button>
-              </div>
-            </form>
-          </div>
-        </div>
 
       </div>
 
