@@ -13,9 +13,10 @@ button.bg-primary {
 button.bg-danger {
   background-color: #e42b49 !important;
 }
-
-body {
+* {
   font-family: "Poppins", sans-serif !important;
+}
+body {
   width: 100vw !important;
   overflow-x: hidden;
 }
