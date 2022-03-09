@@ -7,7 +7,7 @@ export default function Scoreboard3(props) {
 
 
   return (
-    <div className="svg">
+    <div className="svg" style={{ marginTop: "-10vh" }}>
       <svg
         id="Plan_de_travail_1_1_"
         xmlns="http://www.w3.org/2000/svg"

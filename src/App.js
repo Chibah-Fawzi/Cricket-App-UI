@@ -174,7 +174,37 @@ function App() {
       }
     }
   }
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+  const imageUpload = (e, team) => {
+    const file = e.target.files[0];
+    console.log(URL.createObjectURL(file));
 
+    console.log(team);
+    if (team === "home") {
+      setHomeTeam({
+        ...homeTeam,
+        flag: URL.createObjectURL(file)
+      })
+    }
+    if (team === "away") {
+      setAwayTeam({
+        ...awayTeam,
+        flag: URL.createObjectURL(file)
+      })
+    }
+    toBase64(file).then(base64 => {
+      localStorage["fileBase64"] = base64;
+      console.debug("file stored", base64);
+    });
+  };
+
+  // console.log('home: ', homeTeam.flag);
+  // console.log('away: ', awayTeam.flag);
   return (
     <div className='mt-5 px-0 mx-0 mb-0'>
       <div className='layout row justify-content-center'>
@@ -185,6 +215,7 @@ function App() {
             </span>
           </div>
 
+
           <div className="input-wrapper d-md-flex align-items-center justify-content-start w-100">
             <input
               onChange={(e) => handleTeamName(e, true, e.currentTarget.value)}
@@ -192,7 +223,7 @@ function App() {
               className='w-100 mt-2'
               maxLength={3}
               placeholder='Team A' />
-            <label htmlFor='files'>
+            <label htmlFor='homeImage'>
               <i
                 className='p-1 '
                 style={{
@@ -201,11 +232,13 @@ function App() {
             </label>
             <input
               type='file'
-              id="files"
+              onChange={(e) => imageUpload(e, 'home')}
+              id="homeImage"
               className='w-50'
               style={{
                 display: 'none'
-              }} />
+              }}
+            />
           </div>
 
           <div className='btn-wrapper col mt-1'>
@@ -327,7 +360,7 @@ function App() {
               type='text'
               className='w-100 mt-2'
               placeholder='Team B' />
-            <label htmlFor='files'>
+            <label htmlFor='awayImage'>
               <i
                 className='p-1 '
                 style={{
@@ -336,7 +369,8 @@ function App() {
             </label>
             <input
               type='file'
-              id="files"
+              onChange={(e) => imageUpload(e, "away")}
+              id="awayImage"
               className='w-50'
               style={{
                 display: 'none'

@@ -3,7 +3,7 @@ import React from 'react'
 export default function Scoreboard2(props) {
   const { homeTeam, awayTeam } = props
   return (
-    <div className='svg'>
+    <div className='svg' style={{ marginTop: "10vh" }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
