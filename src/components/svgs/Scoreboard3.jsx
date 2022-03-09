@@ -10,7 +10,14 @@ export default function Scoreboard3(props) {
     lastRuns.push(lastRunsHome[i])
   }
 
-  const runs = lastRuns.map(e => lastRuns[e] = "OB")
+  const runs = lastRuns.map(e =>
+    e === "Run" ? e = 1
+      : e === "Extra run" ? e = 1
+        : e === "Hit Boundary" ? e = 4
+          : e === "Over Boundary" ? e = 6
+            : e)
+
+  console.log(runs);
   return (
     <div className="svg">
       <svg
@@ -231,12 +238,12 @@ export default function Scoreboard3(props) {
                 height={46}
                 id={`Calque_3_copie_${7 + i}_xA0_Image`}
                 xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAACXBIWXMAAAsSAAALEgHS3X78AAAA GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAsVJREFUeNrsmktoE0EYgCdTasBD RdCDBUEQBUHQizefIBSrrUpRg6igSMXHRbSHQg8KYtWDXrQnS9GDBx+olNB689GKKCqKJ7FqFKz1 DVZsRaLfb8ayrAnJ7qbZGfCHj58m2c63k9mdf2eSUBHi5EDDXFItrIdFMBUmQML30Sx8gwG4CHcg s2dm95uwbSdCyFaRNsJyWAM1Idt+DJchzQncG1dxpFOknbBYlS+G4Cq0cwIvyyqO8GzSQdgQ5lsq Md6aNro4gdHI4kivInXAdFWZuATNyH8KLY50M+kETFSVjduwCfkXgcWRbiEdU/HFE2hC/mnJ4khv JZ0GreKNh1CH/Pui4kjXky7EMDwKxTVYi/x374vaJz2LdMoiaYk6OOJ/0T8U2mCGsi+20anL8g4V 3mgwE0FC2Rk3ZaZmyHwe63Gkk6S9FksrM1sv8Q+VlbBQ2R+tdHK1V1wugGoHxBfAvD9j3NxJ+k1J 6kJ0wT5tahBXpCXmwxRtxrdLIbfrRm3Gt0sxGVaI+DTlXtSKeNJB8aS2oAIME9pF6bxF1n/xSohn HfTOiviog+IjIj7ooPigiPc6Ji3rLWkRTzsmnoFuEX8N7xwSlyWLD5pnuGcqt2rqQvyCDpy/aM/a xQ8HxO/CI+8EJOO8zwHxw/T2zzFx/pDePm75ZHQdbv0z5SMvvX7WUumvcODvmkq+WuUQPLdQvBPp GwWLLN6UzaXdKrfRZEv0QGvR6hD5XiNvw3i/D5txGimprOWDZ0j7Y5aWXbkULh8D1eMcIFso22E4 Bmm5ezSayTH4gwQHdqrc5mumgtLnYTVtZyI9AfEP5OKQzdhz4zzupbzeAVu8t71CEXSDdh1pFywt s/AVOFqsl0OLG3k5JmW+hSaYFKHKkz3NHoQfBD040kI+JzFH5VbC5DqQhfdSfoQgG2PyI4RXCA+F bfu3AAMAkt++pvHJF04AAAAASUVORK5CYII="
-                transform={`translate(${555 + ((i - 1) * 61)} ${i <= 3 ? 389 : 389 + ((i - 3) * 1)})`}
+                transform={`translate(${546 + ((i - 1) * 61)} ${i <= 3 ? 389 : 389 + ((i - 3) * 1)})`}
               />
             </g>
             <text
               transform={`matrix(.9906 0 0 1 ${500.812 + (i * 61)} 421.232)`}
-              style={{ zIndex: "99!important" }}
+              style={{ zIndex: "99!important", fontWeight: 'bolder', fontSize: '25px' }}
               className="st2 st3 st11"
               id="_x31__1_"
             >
