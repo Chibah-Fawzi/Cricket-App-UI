@@ -1,4 +1,6 @@
 import React from 'react'
+import Scoreboard1 from './svgs/Scoreboard1'
+import Scoreboard2 from './svgs/Scoreboard2'
 import Scoreboard3 from './svgs/Scoreboard3'
 
 export default function ScoreBoard(props) {
@@ -17,10 +19,18 @@ export default function ScoreBoard(props) {
     //     }
     // }
     // console.log(convertedLastRunsHome)
+    const runs = lastRunsHome.map(e =>
+        e === "Run" ? e = 1
+            : e === "Extra Run" ? e = 1
+                : e === "Hit Boundary" ? e = 4
+                    : e === "Over Boundary" ? e = 6
+                        : e)
 
     return (
-        <div className='container mt-0 p-0 d-flex align-items-center justify-content-center'>
-            <Scoreboard3 homeTeam={homeTeam} awayTeam={awayTeam} overs={overs} lastRunsHome={lastRunsHome} />
+        <div className='container mt-0 p-0 d-flex flex-column align-items-center justify-content-center'>
+            {/* <Scoreboard3 homeTeam={homeTeam} awayTeam={awayTeam} overs={overs} runs={runs} /> */}
+            {/* <Scoreboard1 homeTeam={homeTeam} awayTeam={awayTeam} overs={overs} runs={runs} /> */}
+            <Scoreboard2 homeTeam={homeTeam} awayTeam={awayTeam} overs={overs} runs={runs} />
             {/* <div className='row'>
                 <div className='col'>
                     <h2>Home Batter :{homeTeam.batter.name}</h2>

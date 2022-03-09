@@ -3,21 +3,9 @@ import '../../App.css';
 
 
 export default function Scoreboard3(props) {
-  const { homeTeam, awayTeam, overs, lastRunsHome } = props
+  const { homeTeam, awayTeam, overs, runs } = props
 
-  let lastRuns = []
-  for (let i = 0; i < lastRunsHome.length; i++) {
-    lastRuns.push(lastRunsHome[i])
-  }
 
-  const runs = lastRuns.map(e =>
-    e === "Run" ? e = 1
-      : e === "Extra run" ? e = 1
-        : e === "Hit Boundary" ? e = 4
-          : e === "Over Boundary" ? e = 6
-            : e)
-
-  console.log(runs);
   return (
     <div className="svg">
       <svg
