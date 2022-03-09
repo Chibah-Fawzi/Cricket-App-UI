@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Scoreboard1(props) {
-  const { homeTeam, awayTeam, overs, runs } = props
+  const { homeTeam, awayTeam, overs, runs, lastRunsAway } = props
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ export default function Scoreboard1(props) {
           className="st1 st2 st3"
           id="_x34_5_1_"
         >
-          {awayTeam.runsToWin}
+          {homeTeam.runsToWin}
         </text>
         <text
           transform="translate(1437.515 424.587)"
@@ -226,7 +226,7 @@ export default function Scoreboard1(props) {
           className="st1 st2 st3"
           id="_x34_5"
         >
-          {homeTeam.runsToWin}
+          {awayTeam.runsToWin}
         </text>
         <text
           transform="translate(496.514 719.587)"
@@ -289,7 +289,7 @@ export default function Scoreboard1(props) {
           {`${homeTeam?.bowler?.number} - ${homeTeam?.bowler?.name?.toUpperCase()}`}
         </text>
         {/* PREVIOUS RUNS */}
-        {runs.map((e, i) => {
+        {lastRunsAway.map((e, i) => {
           return <>
             <g id="Calque_3_copie_4_xA0_Image_11_">
               <image

@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Scoreboard2(props) {
-  const { homeTeam, awayTeam, overs, runs } = props
+  const { homeTeam, awayTeam } = props
   return (
     <div className='svg'>
       <svg

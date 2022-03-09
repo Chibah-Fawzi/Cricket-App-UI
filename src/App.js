@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
+
   const [homeTeam,
     setHomeTeam] = useState({
       name: "",
@@ -45,8 +46,8 @@ function App() {
 
   const [overs, setOvers] = useState(0);
 
-  const [displayScoreboard,
-    setDisplayScoreboard] = useState(false);
+  const [displayScoreboard, setDisplayScoreboard] = useState(false);
+  const [selectedScoreboard, setSelectedScoreboard] = useState(0);
 
   const handleRuns = (e, run, incr, runType, home) => {
     e.preventDefault();
@@ -167,6 +168,11 @@ function App() {
   const showScoreboard = (e) => {
     e.preventDefault();
     setDisplayScoreboard(!displayScoreboard)
+    if (displayScoreboard === true) {
+      if (selectedScoreboard <= 2 || selectedScoreboard >= 0) {
+        setSelectedScoreboard(selectedScoreboard + 1)
+      }
+    }
   }
 
   return (
@@ -381,7 +387,7 @@ function App() {
       </div>
 
       {displayScoreboard
-        ? <ScoreBoard homeTeam={homeTeam} awayTeam={awayTeam} overs={overs} />
+        ? <ScoreBoard homeTeam={homeTeam} awayTeam={awayTeam} overs={overs} selectedScoreboard={selectedScoreboard} />
         : ''}
     </div>
   );
